@@ -1,5 +1,5 @@
 import os
-from menu import mostrar_menu, obtener_opcion
+from menu import *
 from inventario import (
     cargar_productos,
     buscar_producto,

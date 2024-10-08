@@ -1,5 +1,7 @@
 import os
 os.system("cls")
+
+precio_min = 15000
 def cargar_productos(inventario):
     cantidad = int(input("¿Cuantos productos deseas agregar? "))
     for _ in range(cantidad):
@@ -27,19 +29,21 @@ def ordenar_inventario(inventario):
         
         for i in range(n):
             for j in range(0, n-i-1):
-                if inventario[j][1] > inventario[j+1][1]:
+                if inventario[j][1] < inventario[j+1][1]:
                     inventario[j], inventario[j+1] = inventario[j+1], inventario[j]
 
     else:
         print(f"lista vacia") 
         
-    for i in range(len(inventario)):
+    # for i in range(len(inventario)):
         
-        nombre = inventario[i][0]
-        precio = inventario[i][1]
-        stock = inventario[i][2]
+    #     nombre = inventario[i][0]
+    #     precio = inventario[i][1]
+    #     stock = inventario[i][2]
         
-        print(f"producto: {nombre}, precio: {precio} y stock: {stock}  ")   
+    #     print(f"producto: {nombre}, precio: {precio} y stock: {stock}  ")   
+    for producto in inventario:
+        print(f"Producto: {producto[0]}, Precio: {producto[1]}, Stock: {producto[2]}")
 
 def encontrar_producto_mas_caro(inventario):
     producto_mas_caro = inventario[0]
@@ -63,7 +67,9 @@ def mostrar_producto_mas_barato(inventario):
     producto_barato = encontrar_producto_mas_barato(inventario)
     print(f"Producto mas barato: {producto_barato}")
 
-def mostrar_productos_caros(inventario):
+def mostrar_productos_caros(inventario,precio_min):
     for producto in inventario:
-        if producto[1] > 15000:
+        if producto[1] > precio_min:
             print(producto)
+        else:   
+            print("No hay productos menores a $15000")
